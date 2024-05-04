@@ -24,11 +24,13 @@ $(document).ready(function () {
   
     // AJAX request to check API status
     $.get('http://0.0.0.0:5001/api/v1/status/', function(data, status) {
-        if (status === 'success' && data.status === 'OK') {
+        if (data.status === 'OK') {
             $('#api_status').addClass('available');
         } else {
             $('#api_status').removeClass('available');
         }
+    }).fail(function() {
+        $('#api_status').removeClass('available');
     });
   });
   
